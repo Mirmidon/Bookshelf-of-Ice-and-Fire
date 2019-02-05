@@ -3,21 +3,21 @@ import './header.css';
 
 const Header = () => {
     return (
-        <div class="header-block">
-            <h3 class="header-block__title">
-                <a href="#">
+        <div className="header-block">
+            <h3 className="header-block__title">
+                <a href="http://">
                 Game of Thrones DB
                 </a>
             </h3>
-            <ul class="header-block__links">
+            <ul className="header-block__links">
                 <li>
-                    <a href="#">Characters</a>
+                    <a href="http://">Characters</a>
                 </li>
                 <li>
-                    <a href="#">Houses</a>
+                    <a href="http://">Houses</a>
                 </li>
                 <li>
-                    <a href="#">Books</a>   
+                    <a href="http://">Books</a>   
                 </li>
             </ul>
         </div>
