@@ -6,11 +6,6 @@ import ErrorMessage from '../errorMessage';
 
 export default class RandomChar extends Component {
 
-    constructor() {
-        super();
-        console.log('constructor');
-    }
-
     gotService = new gotService();
     state = {
         char: {},

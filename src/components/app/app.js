@@ -1,60 +1,92 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
 import CharDetails from '../charDetails';
+import ErrorMessage from '../errorMessage';
+import CharacterPage from '../characterPage';
+import gotService from '../../services/gotService';
+import { spawn } from 'child_process';
+
+export default class App extends Component {
+
+    gotService = new gotService();
+
+    state = {
+        showRandomChar: true,
+        // selectedChar: 130,
+        error: false
+    }
+
+    componentDidCatch() {
+        console.log('error');
+        this.setState({
+            error: true
+        })
+    }
+
+    toggleRandomChar = () => {
+        this.setState((state) => {
+            return {
+                showRandomChar: !state.showRandomChar
+            }
+        })
+    }
 
 
-const HideButton = () => {
+    render() {
+        const char = this.state.showRandomChar ? <RandomChar/> : null;
 
-    function fun() {
-        let el = document.querySelector('.random-block.rounded');
-        // if (el.style.visibility !== 'hidden') {
-        if (el.style.display !== 'none') {
-            // el.style.visibility = 'hidden';
-            el.style.display = 'none';
-            document.querySelector('#hideBtn').innerHTML = 'Показать блок';
-        } else {
-            // el.style.visibility = 'visible';
-            el.style.display = 'block';
-            document.querySelector('#hideBtn').innerHTML = 'Спрятать блок';
+        if (this.state.error) {
+            return <ErrorMessage />
         }
+
+        const btnStyle = {
+            padding: '5px',
+            borderRadius: '8px'
+        }
+        return (
+            <> 
+                <Container>
+                    <Header />
+                    <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
+                </Container>
+                <Container>
+                    <Row>
+                        <Col lg={{size: 5, offset: 0}}>
+                            {char}
+                            
+                        </Col>
+                    </Row>
+                    <CharacterPage />
+                    <Row>
+                        <Col md='6'>
+                            <ItemList 
+                                onCharSelected={this.onCharSelected}
+                                getData={this.gotService.getAllBooks}
+                                renderItem={(item) => (<><span>{item.name}</span><button>Click me</button></>)}
+                            />
+                        </Col>
+                        <Col md='6'>
+                            <CharDetails charId={this.state.selectedChar} />
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col md='6'>
+                            <ItemList 
+                                onCharSelected={this.onCharSelected} 
+                                getData={this.gotService.getAllHouses}
+                                renderItem={(item) => item.name}
+                            />
+                        </Col>
+                        <Col md='6'>
+                            <CharDetails charId={this.state.selectedChar} />
+                        </Col>
+                    </Row>
+                </Container>
+            </>
+        );
     }
-
-    const btnStyle = {
-        padding: '5px',
-        borderRadius: '8px'
-    }
-
-    return <button id="hideBtn" onClick={fun} style={btnStyle}>Спрятать блок</button>
-}
-
-const App = () => {
-
-    return (
-        <> 
-            <Container>
-                <Header />
-                <HideButton />
-            </Container>
-            <Container>
-                <Row>
-                    <Col lg={{size: 5, offset: 0}}>
-                        <RandomChar/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md='6'>
-                        <ItemList />
-                    </Col>
-                    <Col md='6'>
-                        <CharDetails />
-                    </Col>
-                </Row>
-            </Container>
-        </>
-    );
 };
-
-export default App;
+// export default App;
