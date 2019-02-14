@@ -5,9 +5,7 @@ import Spinner from '../spinner';
 export default class ItemList extends Component {
 
     state = {
-        itemList: null,
-        // loading: true,
-        // error: false
+        itemList: null
     }
 
     componentDidMount() {
@@ -22,7 +20,7 @@ export default class ItemList extends Component {
     }
 
     renderItems(arr) {
-        console.log(arr);
+
         return arr.map((item) => {
             const {id} = item;
             const label = this.props.renderItem(item);
