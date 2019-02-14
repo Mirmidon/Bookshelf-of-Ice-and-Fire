@@ -65,7 +65,7 @@ export default class App extends Component {
                             <ItemList 
                                 onCharSelected={this.onCharSelected}
                                 getData={this.gotService.getAllBooks}
-                                renderItem={(item) => (<><span>{item.name}</span><button>Click me</button></>)}
+                                renderItem={(item) => item.name}
                             />
                         </Col>
                         <Col md='6'>
