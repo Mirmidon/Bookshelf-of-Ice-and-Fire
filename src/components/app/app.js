@@ -3,12 +3,7 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage';
-
-import {BooksItem} from '../pages/';
-import CharacterPage from '../pages/characterPage';
-import BooksPage from '../pages/booksPage';
-import HousesPage from '../pages/housesPage';
-
+import {StartPage, CharacterPage, HousesPage, BooksPage, BooksItem} from '../pages/';
 import gotService from '../../services/gotService';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -18,7 +13,7 @@ export default class App extends Component {
 
     state = {
         showRandomChar: true,
-        error: false
+        error: false,
     }
 
     componentDidCatch() {
@@ -36,9 +31,8 @@ export default class App extends Component {
         })
     }
 
-
     render() {
-        const char = this.state.showRandomChar ? <RandomChar/> : null;
+        const randomChar = this.state.showRandomChar ? <RandomChar/> : null;
 
         if (this.state.error) {
             return <ErrorMessage />
@@ -53,15 +47,15 @@ export default class App extends Component {
                 <div className="app">
                     <Container>
                         <Header />
-                        <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
                     </Container>
                     <Container>
                         <Row>
                             <Col lg={{size: 5, offset: 0}}>
-                                {char}
+                                <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
+                                {randomChar}
                             </Col>
                         </Row>
-                        <Route path='/' exact component={() => <h1>Welcome to The GOT DB</h1>} />
+                        <Route path='/' exact component={StartPage} />
                         <Route path='/characters/' component={CharacterPage} />
                         <Route path='/houses/' component={HousesPage} />
                         <Route path='/books/' exact component={BooksPage} />

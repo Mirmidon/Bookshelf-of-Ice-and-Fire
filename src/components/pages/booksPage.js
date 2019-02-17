@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import gotService from '../../../services/gotService';
-import ErrorMessage from '../../errorMessage';
-import ItemList from '../../itemList';
+import gotService from '../../services/gotService';
+import ErrorMessage from '../errorMessage';
+import ItemList from '../itemList';
 import {withRouter} from 'react-router-dom';
 
 

@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import './itemDetails.css';
 
 
-const Field = ({item, field, label}) => {
+const Field = ({item, field, label, style}) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
             <span className="term">{label}</span>
-            <span>{item[field]}</span>
+            <span style={style}>{item[field]}</span>
         </li>
     )
 }

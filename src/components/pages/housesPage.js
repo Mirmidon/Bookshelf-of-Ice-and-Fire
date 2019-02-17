@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import gotService from '../../../services/gotService';
-import ErrorMessage from '../../errorMessage';
-import ItemList from '../../itemList';
-import ItemDetails, {Field} from '../../itemDetails';
-import RowBlock from '../../rowBlock';
-import './housesPage.css';
+import gotService from '../../services/gotService';
+import ErrorMessage from '../errorMessage';
+import ItemList from '../itemList';
+import ItemDetails, {Field} from '../itemDetails';
+import RowBlock from '../rowBlock';
+// import './housesPage.css';
 
 export default class HousesPage extends Component {
     gotService = new gotService();
@@ -39,6 +39,9 @@ export default class HousesPage extends Component {
             />
         )
 
+        const style = {
+            textAlign: 'right'
+        }
         const itemDetails = (
             <ItemDetails 
                 itemId={this.state.selectedItem}
@@ -47,7 +50,7 @@ export default class HousesPage extends Component {
                 <Field field='overlord' label='Overlord' />
                 <Field field='region' label='Region' />
                 <Field field='worlds' label='Worlds' />
-                <Field styleClass="coat" field='coatOfArms' label='CoatOfArms' />
+                <Field style={style} field='coatOfArms' label='CoatOfArms' />
             </ItemDetails>
         )
 
