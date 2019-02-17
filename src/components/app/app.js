@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
-import ItemList from '../itemList';
-import ItemDetails from '../itemDetails';
 import ErrorMessage from '../errorMessage';
-import CharacterPage from '../characterPage';
-import BooksPage from '../booksPage';
-import HousesPage from '../housesPage';
+
+import {BooksItem} from '../pages/';
+import CharacterPage from '../pages/characterPage';
+import BooksPage from '../pages/booksPage';
+import HousesPage from '../pages/housesPage';
+
 import gotService from '../../services/gotService';
-// import { spawn } from 'child_process';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 export default class App extends Component {
 
@@ -17,7 +18,6 @@ export default class App extends Component {
 
     state = {
         showRandomChar: true,
-        // selectedChar: 130,
         error: false
     }
 
@@ -49,48 +49,32 @@ export default class App extends Component {
             borderRadius: '8px'
         }
         return (
-            <> 
-                <Container>
-                    <Header />
-                    <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
-                </Container>
-                <Container>
-                    <Row>
-                        <Col lg={{size: 5, offset: 0}}>
-                            {char}
-                            
-                        </Col>
-                    </Row>
-                    <CharacterPage />
-                    <BooksPage />
-                    <HousesPage />
-                    {/* <Row>
-                        <Col md='6'>
-                            <ItemList 
-                                onItemSelected={this.onItemSelected}
-                                getData={this.gotService.getAllBooks}
-                                renderItem={(item) => item.name}
-                            />
-                        </Col>
-                        <Col md='6'>
-                            <ItemDetails charId={this.state.selectedChar} />
-                        </Col>
-                    </Row> */}
-                    {/* <Row>
-                        <Col md='6'>
-                            <ItemList 
-                                onItemSelected={this.onItemSelected} 
-                                getData={this.gotService.getAllHouses}
-                                renderItem={(item) => item.name}
-                            />
-                        </Col>
-                        <Col md='6'>
-                            <ItemDetails charId={this.state.selectedChar} />
-                        </Col>
-                    </Row> */}
-                </Container>
-            </>
+            <Router>
+                <div className="app">
+                    <Container>
+                        <Header />
+                        <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
+                    </Container>
+                    <Container>
+                        <Row>
+                            <Col lg={{size: 5, offset: 0}}>
+                                {char}
+                            </Col>
+                        </Row>
+                        <Route path='/' exact component={() => <h1>Welcome to The GOT DB</h1>} />
+                        <Route path='/characters/' component={CharacterPage} />
+                        <Route path='/houses/' component={HousesPage} />
+                        <Route path='/books/' exact component={BooksPage} />
+                        <Route path='/books/:id' render={
+                            ({match}) => {
+                                const {id} = match.params;
+                                return <BooksItem bookId={id} />
+                            }
+                        } />
+
+                    </Container>
+                </div>
+            </Router>
         );
     }
 };
-// export default App;
