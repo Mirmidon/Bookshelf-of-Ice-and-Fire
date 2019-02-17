@@ -3,10 +3,11 @@ import {Col, Row, Container} from 'reactstrap';
 import Header from '../header';
 import RandomChar from '../randomChar';
 import ItemList from '../itemList';
-// import CharDetails from '../charDetails';
 import ItemDetails from '../itemDetails';
 import ErrorMessage from '../errorMessage';
 import CharacterPage from '../characterPage';
+import BooksPage from '../booksPage';
+import HousesPage from '../housesPage';
 import gotService from '../../services/gotService';
 // import { spawn } from 'child_process';
 
@@ -61,7 +62,9 @@ export default class App extends Component {
                         </Col>
                     </Row>
                     <CharacterPage />
-                    <Row>
+                    <BooksPage />
+                    <HousesPage />
+                    {/* <Row>
                         <Col md='6'>
                             <ItemList 
                                 onItemSelected={this.onItemSelected}
@@ -72,8 +75,8 @@ export default class App extends Component {
                         <Col md='6'>
                             <ItemDetails charId={this.state.selectedChar} />
                         </Col>
-                    </Row>
-                    <Row>
+                    </Row> */}
+                    {/* <Row>
                         <Col md='6'>
                             <ItemList 
                                 onItemSelected={this.onItemSelected} 
@@ -84,7 +87,7 @@ export default class App extends Component {
                         <Col md='6'>
                             <ItemDetails charId={this.state.selectedChar} />
                         </Col>
-                    </Row>
+                    </Row> */}
                 </Container>
             </>
         );

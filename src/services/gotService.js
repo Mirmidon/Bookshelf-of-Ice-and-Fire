@@ -75,7 +75,8 @@ export default class GotService {
             worlds: this.isSet(house.worlds),
             titles: this.isSet(house.titles),
             overlord: this.isSet(house.overlord),
-            ancestralWeapons: this.isSet(house.ancestralWeapons)
+            ancestralWeapons: this.isSet(house.ancestralWeapons),
+            coatOfArms: this.isSet(house.coatOfArms)
         }
     }
 

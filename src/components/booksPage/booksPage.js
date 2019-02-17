@@ -9,7 +9,7 @@ export default class BooksPage extends Component {
     gotService = new gotService();
 
     state = {
-        selectedBook: 1,
+        selectedItem: 1,
         error: false
     }
 
@@ -20,7 +20,7 @@ export default class BooksPage extends Component {
     }
     onItemSelected = (id) => {
         this.setState({
-            selectedBook: id
+            selectedItem: id
         })
     }
 
@@ -33,18 +33,18 @@ export default class BooksPage extends Component {
             <ItemList 
                 onItemSelected={this.onItemSelected} 
                 getData={this.gotService.getAllBooks}
-                renderItem={({name, numberOfPages}) => `${name} (${numberOfPages})`}
+                renderItem={({name, numberOfPages}) => `${name} (${numberOfPages} стр.)`}
             />
         )
 
         const itemDetails = (
             <ItemDetails
-                charId = {this.state.selectedBook}
+                itemId = {this.state.selectedItem}
                 getData = {this.gotService.getBook}
             >
-                {/* <Field field='numberOfPages' label='NumberOfPages' /> */}
-                {/* <Field field='publisher' label='Publisher' /> */}
-                {/* <Field field='released' label='Released' /> */}
+                <Field field='numberOfPages' label='NumberOfPages' />
+                <Field field='publisher' label='Publisher' />
+                <Field field='released' label='Released' />
             </ItemDetails>
         )
 
