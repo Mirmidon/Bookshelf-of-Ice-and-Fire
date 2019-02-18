@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import './randomChar.css';
 import gotService from '../../services/gotService';
 import ErrorMessage from '../errorMessage';
 import ItemDetails, {Field} from '../itemDetails';
@@ -10,6 +9,7 @@ export default class RandomChar extends Component {
 
     gotService = new gotService();
     state = {
+        showRandomChar: true,
         ramdomId: 140,
         loading: true,
         error: false
@@ -22,13 +22,6 @@ export default class RandomChar extends Component {
 
     componentWillUnmount() {
         clearInterval(this.timerId);
-    }
-
-    onCharLoaded = (char) => {
-        this.setState({
-            char,
-            loading: false
-        })
     }
 
     onError = (err) => {
@@ -45,6 +38,13 @@ export default class RandomChar extends Component {
         })
     }    
 
+    toggleRandomChar = () => {
+        this.setState((state) => {
+            return {
+                showRandomChar: !state.showRandomChar
+            }
+        })
+    }
 
     render() {
         if (this.state.error) {
@@ -67,8 +67,17 @@ export default class RandomChar extends Component {
             </ItemDetails>
         )
 
+        const randomChar = this.state.showRandomChar ? <RowBlock left={itemDetails} /> : null;
+
+        const btnStyle = {
+            padding: '5px',
+            borderRadius: '8px'
+        }
         return (
-            <RowBlock left={itemDetails} />
+            <>
+                <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
+                {randomChar}
+            </>
         )
     }
 }
