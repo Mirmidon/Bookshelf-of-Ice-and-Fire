@@ -4,6 +4,7 @@ import RandomCharPage from './randomCharPage';
 import HousesPage from './housesPage';
 import BooksPage from './booksPage';
 import BooksItem from './booksItem';
+import Default404 from './default404';
 
 export {
     StartPage,
@@ -11,5 +12,6 @@ export {
     RandomCharPage,
     HousesPage,
     BooksPage,
-    BooksItem
+    BooksItem,
+    Default404
 }

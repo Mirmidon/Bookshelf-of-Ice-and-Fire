@@ -1,0 +1,25 @@
+.default-404-page {
+    width: 640px;
+    height: 480px;
+    margin: 0 auto;
+    text-align: center;
+    /* color: white; */
+}
+.default-404-page__title {
+    margin: 25px;
+    color: white;
+}
+.default-404-page__link {
+    font-size: 26px;
+    font-weight: bold;
+    color: black;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 12px;
+    transition: background-color 1s ease,
+                color 1s ease;
+}
+.default-404-page__link:hover {
+    color: white;
+    background: black;    
+}
