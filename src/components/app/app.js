@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import {Container} from 'reactstrap';
 import Header from '../header';
-import RandomChar from '../randomChar';
 import ErrorMessage from '../errorMessage';
-import {StartPage, CharacterPage, HousesPage, BooksPage, BooksItem} from '../pages/';
+import {StartPage, CharacterPage, RandomCharPage, HousesPage, BooksPage, BooksItem} from '../pages/';
 import gotService from '../../services/gotService';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -35,8 +34,8 @@ export default class App extends Component {
                         <Header />
                     </Container>
                     <Container>
-                        <RandomChar/>
                         <Route path='/' exact component={StartPage} />
+                        <Route path='/characters/' component={RandomCharPage} />
                         <Route path='/characters/' component={CharacterPage} />
                         <Route path='/houses/' component={HousesPage} />
                         <Route path='/books/' exact component={BooksPage} />
@@ -46,7 +45,6 @@ export default class App extends Component {
                                 return <BooksItem bookId={id} />
                             }
                         } />
-
                     </Container>
                 </div>
             </Router>
