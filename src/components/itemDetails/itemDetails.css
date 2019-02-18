@@ -12,6 +12,14 @@
     text-align: center;
     font-size: 26px;
 }
-/* .term {
-    font-weight: bold;
-} */
+.book-cover {
+    text-align: right;
+}
+.book-cover i {
+    display: inline-block;
+    height: 200px;
+    width: 300px;
+    border-radius: 8px;
+    background: url(http://localhost:3000/static/media/book-cover.114fe0b4.jpg) center center no-repeat;
+    background-size: cover;
+}

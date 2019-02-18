@@ -52,6 +52,8 @@ export default class ItemDetails extends Component {
         const {name} = item;
 
         return (
+            <>
+            <div className={this.props.className}><i></i></div>
             <div className="item-details rounded">
                 <h4>{this.props.randomChar ? 'Random Character: ': ''}{name}</h4>
                 <ul className="list-group list-group-flush">
@@ -62,6 +64,7 @@ export default class ItemDetails extends Component {
                     }
                 </ul>
             </div>
+            </>
         );
     }
 }
