@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
-import './randomChar.css';
+// import './randomChar.css';
 import gotService from '../../services/gotService';
-import Spinner from '../spinner';
 import ErrorMessage from '../errorMessage';
+import ItemDetails, {Field} from '../itemDetails';
+import RowBlock from '../rowBlock';
+
 
 export default class RandomChar extends Component {
 
     gotService = new gotService();
     state = {
-        char: {},
+        ramdomId: 140,
         loading: true,
         error: false
     }
@@ -38,53 +40,35 @@ export default class RandomChar extends Component {
 
     updateChar = () => {
         const id = Math.floor(Math.random() * 140 + 25);
-        this.gotService.getCharacter(id)
-            .then(this.onCharLoaded)
-            .catch(this.onError);
+        this.setState({
+            ramdomId: id
+        })
     }    
 
 
     render() {
+        if (this.state.error) {
+            return <ErrorMessage />
+        }
 
-        const { char, loading, error } = this.state;
-
-        const errorMessage = error ? <ErrorMessage/> : null;
-        const spinner = loading ? <Spinner/> : null;
-        const content = !(loading || error) ? <View char={char}/> : null;
+        const style = {
+            fontWeight: 'bold'
+        }
+        const itemDetails = (
+            <ItemDetails 
+                itemId={this.state.ramdomId}
+                getData={this.gotService.getCharacter}
+                randomChar={true}
+            >
+                <Field styleLabel={style} field='gender' label='Gender' />
+                <Field styleLabel={style} field='born' label='Born' />
+                <Field styleLabel={style} field='died' label='Died' />
+                <Field styleLabel={style} field='culture' label='Culture' />
+            </ItemDetails>
+        )
 
         return (
-            <div className="random-block rounded">
-                {errorMessage}
-                {spinner}
-                {content}
-            </div>
-        );
+            <RowBlock left={itemDetails} />
+        )
     }
-}
-
-const View = ({char}) => {
-    const {name, gender, born, died, culture} = char;
-    return (
-        <>
-            <h4>Random Character: {name}</h4>
-            <ul className="list-group list-group-flush">
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Gender </span>
-                    <span>{gender}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Born </span>
-                    <span>{born}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Died </span>
-                    <span>{died}</span>
-                </li>
-                <li className="list-group-item d-flex justify-content-between">
-                    <span className="term">Culture </span>
-                    <span>{culture}</span>
-                </li>
-            </ul>
-        </>
-    )
 }

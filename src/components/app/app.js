@@ -38,10 +38,10 @@ export default class App extends Component {
             return <ErrorMessage />
         }
 
-        const btnStyle = {
-            padding: '5px',
-            borderRadius: '8px'
-        }
+        // const btnStyle = {
+            // padding: '5px',
+            // borderRadius: '8px'
+        // }
         return (
             <Router>
                 <div className="app">
@@ -49,12 +49,12 @@ export default class App extends Component {
                         <Header />
                     </Container>
                     <Container>
-                        <Row>
-                            <Col lg={{size: 5, offset: 0}}>
-                                <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button>
+                        {/* <Row> */}
+                            {/* <Col lg={{size: 5, offset: 0}}> */}
+                                {/* <button onClick={() => this.toggleRandomChar()} style={btnStyle}>click me!</button> */}
                                 {randomChar}
-                            </Col>
-                        </Row>
+                            {/* </Col> */}
+                        {/* </Row> */}
                         <Route path='/' exact component={StartPage} />
                         <Route path='/characters/' component={CharacterPage} />
                         <Route path='/houses/' component={HousesPage} />

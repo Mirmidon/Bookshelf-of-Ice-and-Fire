@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import './itemDetails.css';
 
 
-const Field = ({item, field, label, style}) => {
+const Field = ({item, field, label, styleLabel, styleValue}) => {
     return (
         <li className="list-group-item d-flex justify-content-between">
-            <span className="term">{label}</span>
-            <span style={style}>{item[field]}</span>
+            <span style={styleLabel} className="term">{label}</span>
+            <span style={styleValue}>{item[field]}</span>
         </li>
     )
 }
@@ -53,7 +53,7 @@ export default class ItemDetails extends Component {
 
         return (
             <div className="item-details rounded">
-                <h4>{name}</h4>
+                <h4>{this.props.randomChar ? 'Random Character: ': ''}{name}</h4>
                 <ul className="list-group list-group-flush">
                     {
                         React.Children.map(this.props.children, (child) => {
