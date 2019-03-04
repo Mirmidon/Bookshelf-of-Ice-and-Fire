@@ -3,17 +3,14 @@ import {Container} from 'reactstrap';
 import Header from '../header';
 import ErrorMessage from '../errorMessage';
 import {StartPage, CharacterPage, RandomCharPage, HousesPage, BooksPage, BooksItem, Default404} from '../pages/';
-import gotService from '../../services/gotService';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 
 export default class App extends Component {
 
-    gotService = new gotService();
-
     state = {
         error: false,
-    }
+    };
 
     componentDidCatch() {
         console.log('error');
@@ -37,8 +34,12 @@ export default class App extends Component {
                     <Container>
                         <Switch>
                             <Route path='/' exact component={StartPage} />
-                            <Route path='/characters/' component={RandomCharPage} />
-                            <Route path='/characters/' component={CharacterPage} />
+                            <Route path='/characters/' component = {() =>
+                                <>
+                                    <RandomCharPage />
+                                    <CharacterPage />
+                                </>
+                            } />
                             <Route path='/houses/' component={HousesPage} />
                             <Route path='/books/' exact component={BooksPage} />
                             <Route path='/books/:id' render={
