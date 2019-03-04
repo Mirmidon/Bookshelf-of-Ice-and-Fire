@@ -20,6 +20,6 @@
     height: 200px;
     width: 300px;
     border-radius: 8px;
-    background: url(http://localhost:3000/static/media/book-cover.114fe0b4.jpg) center center no-repeat;
+    background: url("../pages/assets/img/book-cover.jpg") center center no-repeat;
     background-size: cover;
 }
